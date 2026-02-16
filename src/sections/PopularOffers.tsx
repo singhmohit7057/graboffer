@@ -1,47 +1,47 @@
-import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Bus, Laptop, Globe, CreditCard, ArrowRight } from 'lucide-react';
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { Bus, Laptop, Globe, CreditCard, ArrowRight } from "lucide-react";
 
 const offers = [
   {
     id: 1,
-    badge: 'GRABON EXCLUSIVE',
-    badgeColor: 'bg-[#0064c9]',
-    title: 'Get Up To Rs 500 OFF',
-    subtitle: 'On Your Bus Ticket Bookings',
+    badge: "GRABON EXCLUSIVE",
+    badgeColor: "bg-[#0064c9]",
+    title: "Get Up To Rs 500 OFF",
+    subtitle: "On Your Bus Ticket Bookings",
     icon: Bus,
-    gradient: 'from-blue-500 to-blue-600',
-    bgColor: 'bg-blue-50',
+    gradient: "from-blue-500 to-blue-600",
+    bgColor: "bg-blue-50",
   },
   {
     id: 2,
-    badge: 'Republic Day Special',
-    badgeColor: 'bg-[#d32f2f]',
-    title: 'Laptops - Up To 40% OFF',
-    subtitle: 'Extra 5% OFF On Your Purchases',
+    badge: "Republic Day Special",
+    badgeColor: "bg-[#d32f2f]",
+    title: "Laptops - Up To 40% OFF",
+    subtitle: "Extra 5% OFF On Your Purchases",
     icon: Laptop,
-    gradient: 'from-red-500 to-red-600',
-    bgColor: 'bg-red-50',
+    gradient: "from-red-500 to-red-600",
+    bgColor: "bg-red-50",
   },
   {
     id: 3,
-    badge: 'DOMAIN EXCLUSIVE',
-    badgeColor: 'bg-[#f57c00]',
-    title: 'Get .Com Domain 1st Year',
-    subtitle: 'Only at Rs 89*',
+    badge: "DOMAIN EXCLUSIVE",
+    badgeColor: "bg-[#f57c00]",
+    title: "Get .Com Domain 1st Year",
+    subtitle: "Only at Rs 89*",
     icon: Globe,
-    gradient: 'from-orange-500 to-orange-600',
-    bgColor: 'bg-orange-50',
+    gradient: "from-orange-500 to-orange-600",
+    bgColor: "bg-orange-50",
   },
   {
     id: 4,
-    badge: 'SITEWIDE OFF',
-    badgeColor: 'bg-[#4caf50]',
-    title: 'Flat 87% OFF',
-    subtitle: 'On Annual & Monthly Plans',
+    badge: "SITEWIDE OFF",
+    badgeColor: "bg-[#4caf50]",
+    title: "Flat 87% OFF",
+    subtitle: "On Annual & Monthly Plans",
     icon: CreditCard,
-    gradient: 'from-green-500 to-green-600',
-    bgColor: 'bg-green-50',
+    gradient: "from-green-500 to-green-600",
+    bgColor: "bg-green-50",
   },
 ];
 
@@ -57,7 +57,7 @@ export default function PopularOffers() {
           observer.disconnect();
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
 
     if (sectionRef.current) {
@@ -74,16 +74,16 @@ export default function PopularOffers() {
         <div className="flex items-center justify-between mb-8">
           <h2
             className={`text-2xl md:text-3xl font-bold text-gray-900 transition-all duration-600 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
-            style={{ fontFamily: 'Nunito Sans, sans-serif' }}
+            style={{ fontFamily: "Nunito Sans, sans-serif" }}
           >
             Popular Offers of the Day
           </h2>
           <Link
             to="/offers"
             className={`hidden sm:flex items-center gap-2 text-[#0064c9] font-semibold hover:gap-3 transition-all duration-300 ${
-              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
+              isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
             }`}
           >
             View All
@@ -99,9 +99,7 @@ export default function PopularOffers() {
               <div
                 key={offer.id}
                 className={`group relative overflow-hidden rounded-xl ${offer.bgColor} p-5 cursor-pointer transition-all duration-500 hover:-translate-y-2 hover:shadow-xl ${
-                  isVisible
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-8'
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
@@ -142,10 +140,7 @@ export default function PopularOffers() {
 
         {/* Mobile View All */}
         <div className="sm:hidden mt-6 text-center">
-          <Link
-            to="/popular-offers"
-            className="inline-flex items-center gap-2 text-[#0064c9] font-semibold"
-          >
+          <Link to="/offers" className="inline-flex items-center gap-2 text-[#0064c9] font-semibold">
             View All Offers
             <ArrowRight className="w-5 h-5" />
           </Link>

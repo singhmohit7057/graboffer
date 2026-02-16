@@ -71,7 +71,7 @@ export default function PopularCategoriesPage() {
                 className={`group bg-white rounded-2xl shadow-sm transition-all duration-500
                   ${cat.isLive 
                     ? 'hover:shadow-xl cursor-pointer'
-                    : 'cursor-not-allowed opacity-70'}
+                    : 'cursor-not-allowed opacity-90'}
                   ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
                 `}
                 style={{ transitionDelay: `${index * 40}ms` }}

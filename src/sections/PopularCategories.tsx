@@ -41,7 +41,7 @@ export default function PopularCategories() {
 
           <Link
             to="/category"
-            className={`hidden sm:flex items-center gap-2 text-[#0064c9] font-semibold transition-all duration-300 hover:gap-3 ${
+            className={`flex items-center gap-2 text-[#0064c9] font-semibold transition-all duration-300 hover:gap-3 ${
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
             }`}
           >
