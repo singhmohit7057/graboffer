@@ -53,43 +53,66 @@ export default function PopularCategories() {
         {/* Grid */}
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-10 gap-3">
           {categories.map((category, index) => {
-            const Icon = category.icon;
-            const Wrapper = category.isLive ? Link : 'div';
+  const Icon = category.icon;
 
-            return (
-              <Wrapper
-                key={category.id}
-                {...(category.isLive ? { to: category.pagePath } : {})}
-                className={`group flex flex-col items-center p-4 bg-white rounded-xl border border-transparent
-                  transition-all duration-300
-                  ${category.isLive 
-                    ? 'hover:shadow-lg hover:border-gray-100 hover:-translate-y-1 cursor-pointer'
-                    : 'cursor-not-allowed'}
-                  ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
-                `}
-                >
+  if (category.isLive) {
+    return (
+      <Link
+        key={category.id}
+        to={category.pagePath ?? "/"}
+        className={`group flex flex-col items-center p-4 bg-white rounded-xl border border-transparent
+          transition-all duration-300
+          hover:shadow-lg hover:border-gray-100 hover:-translate-y-1 cursor-pointer
+          ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
+        `}
+      >
+        <div
+          className="w-12 h-12 rounded-xl flex items-center justify-center mb-2
+          transition-all duration-300 group-hover:scale-110"
+          style={{ backgroundColor: `${category.color}15` }}
+        >
+          <Icon
+            className="w-6 h-6"
+            style={{ color: category.color }}
+          />
+        </div>
 
-                {/* Icon */}
-                <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-2
-                    transition-all duration-300 group-hover:scale-110"
-                    style={{ backgroundColor: `${category.color}15` }}
-                     >
-                <Icon
-                   className="w-6 h-6"
-                   style={{ color: category.color }}
-                 />
-                 </div>
+        <span className="text-xs font-medium text-gray-700 text-center line-clamp-1 group-hover:text-[#0064c9] transition-colors">
+          {category.name}
+        </span>
+      </Link>
+    );
+  }
 
-                {/* Name */}
-                <span className="text-xs font-medium text-gray-700 text-center line-clamp-1 group-hover:text-[#0064c9] transition-colors">
-                  {category.name}
-                </span>
-              </Wrapper>
-            );
-          })}
+  return (
+    <div
+      key={category.id}
+      className={`group flex flex-col items-center p-4 bg-white rounded-xl border border-transparent
+        transition-all duration-300
+        cursor-not-allowed
+        ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
+      `}
+    >
+      <div
+        className="w-12 h-12 rounded-xl flex items-center justify-center mb-2"
+        style={{ backgroundColor: `${category.color}15` }}
+      >
+        <Icon
+          className="w-6 h-6"
+          style={{ color: category.color }}
+        />
+      </div>
+
+      <span className="text-xs font-medium text-gray-700 text-center line-clamp-1">
+        {category.name}
+      </span>
+    </div>
+  );
+})}
         </div>
       </div>
     </section>
   );
 }
+
+

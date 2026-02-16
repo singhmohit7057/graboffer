@@ -77,7 +77,8 @@ export default function CategoryIndexPage() {
         <div key={letter} className="mb-6">
           <h2 className="text-lg font-semibold mb-2">{letter}</h2>
           <div className="space-y-2">
-           {grouped[letter].map(cat => {
+           {grouped[letter].map((cat: any) => {
+
               const Icon = cat.icon;
 
               return (
