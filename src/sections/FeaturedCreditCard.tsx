@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { creditCards } from '../data/creditCards';
 
@@ -45,12 +46,13 @@ export default function CreditCardsFeaturedRail() {
           </p>
         </div>
 
-        <a
-          href="/credit-cards"
+        <Link
+          to="/credit-cards"
           className="text-[#0064c9] font-semibold hover:underline"
         >
           View all cards →
-        </a>
+        </Link>
+
       </div>
 
       {/* Tag Filters */}
@@ -145,12 +147,12 @@ export default function CreditCardsFeaturedRail() {
                   Apply Now
                 </a>
 
-                <a
-                  href={`/credit-cards/${card.slug}`}
+                <Link
+                  to={`/credit-cards/${card.slug}`}
                   className="text-sm flex items-center gap-1 text-gray-500 hover:text-black"
                 >
                   Details <ArrowRight className="w-4 h-4" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
