@@ -1,0 +1,191 @@
+import { useParams, Navigate } from 'react-router-dom';
+import { ArrowRight, Filter } from 'lucide-react';
+import { stores } from '../../data/stores';
+import { offers } from '../../data/offers';
+import SEO from '../../components/SEO';
+import NoOfferPage from './NoOfferPage';
+import { Link } from 'react-router-dom';
+import { Building2, MapPin, Mail, Phone } from "lucide-react";
+
+export default function StorePage() {
+  const { slug } = useParams();
+
+  const store = stores.find(
+    s => s.slug === slug && s.isLive
+  );
+
+  if (!store) {
+    return <Navigate to="/not-found" replace />;
+  }
+
+  const storeOffers = offers.filter(
+    o => o.store.toLowerCase() === store.name.toLowerCase()
+  );
+  // Store found but no offers
+  if (storeOffers.length === 0) {
+    return <NoOfferPage store={store} />;
+  }
+
+  return (
+    <>
+      <SEO
+        title={`${store.name} Offers & Deals – GrabOffer`}
+        description={`Get the latest verified ${store.name} coupon codes, deals, and discounts.`}
+      />
+
+      <div className="pt-[140px] min-h-screen bg-gray-50">
+        <div className="section-padding">
+
+          {/* Store Header */}
+          <div className="flex items-center gap-4 mb-8">
+            <img
+              src={store.logo}
+              alt={store.name}
+              className="w-14 h-14 rounded-lg bg-white p-2 shadow"
+            />
+            
+            <div>
+              <h1 className="text-3xl font-bold">{store.name} Offers</h1>
+              <p className="text-gray-600 text-sm">
+                Latest coupons, deals & discounts
+              </p>
+            </div>
+          </div>
+
+          {/* 🔹 Store Description Card */}
+          <div className="bg-white rounded-2xl shadow-sm p-6 mb-7">
+            <p className="text-gray-600 text-sm leading-relaxed">
+              {store.description}
+            </p>
+          </div>
+
+          {/* Offers */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {storeOffers.map(offer => {
+                const Icon = offer.icon;
+
+                return (
+                  <div
+                    key={offer.id}
+                    onClick={() => window.open(offer.link, '_blank')}
+                    className={`relative rounded-2xl p-5 shadow-sm hover:shadow-xl
+                                transition-all duration-300 cursor-pointer
+                                ${offer.bgColor}`}
+                  >
+
+                    {/* Badge */}
+                    {offer.badge && (
+                      <span
+                        className={`absolute top-4 right-4 text-xs font-bold
+                                    text-white px-3 py-1 rounded-full ${offer.badgeColor}`}
+                      >
+                        {offer.badge}
+                      </span>
+                    )}
+
+                    {/* Icon */}
+                    <div
+                      className={`w-12 h-12 rounded-xl flex items-center justify-center
+                                  text-white mb-4 bg-gradient-to-br ${offer.gradient}`}
+                    >
+                      {Icon && <Icon className="w-6 h-6" />}
+                    </div>
+
+                    {/* Content */}
+                    <h3 className="font-semibold text-lg mb-1">
+                      {offer.title}
+                    </h3>
+
+                    {offer.subtitle && (
+                      <p className="text-sm text-gray-600 mb-2">
+                        {offer.subtitle}
+                      </p>
+                    )}
+
+                    <p className="text-sm text-gray-500 mb-4 line-clamp-2">
+                      {offer.description}
+                    </p>
+
+                    {/* Meta */}
+                    <div className="flex justify-between text-xs text-gray-400">
+                      <span>Expires: {offer.expiry}</span>
+                      <span>{offer.usage}</span>
+                    </div>
+
+                   {/* CTA */}
+                    <div className="mt-4 flex items-center justify-between">
+                      <span className="text-blue-600 font-semibold text-sm">
+                          Visit Store →
+                      </span>
+
+                      <Link
+                        to={`/offer/${offer.slug}`}
+                        onClick={(e) => e.stopPropagation()}
+                        className="text-sm flex items-center gap-1 text-gray-500 hover:text-black"
+                      >
+                        Details <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </div>
+                  </div> 
+                );
+              })}
+            </div>
+          
+          {/* Company Info */}
+            {store.company && (
+              <div className="bg-gray-100 rounded-2xl p-6 mt-8 mb-10">
+                
+                {/* Title */}
+                <h2 className="text-xl font-semibold text-gray-800 mb-4">
+                  Company data
+                </h2>
+
+                <div className="border-t pt-5 flex flex-col md:flex-row justify-between gap-6">
+
+                  {/* LEFT */}
+                  <div className="space-y-4 text-gray-700">
+
+                    <div className="flex items-center gap-3">
+                      <Building2 className="w-5 h-5 text-blue-500" />
+                      <span>{store.company.legalName}</span>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <MapPin className="w-5 h-5 text-blue-500" />
+                      <span>{store.company.address}</span>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <Mail className="w-5 h-5 text-blue-500" />
+                      <span>{store.company.email}</span>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <Phone className="w-5 h-5 text-blue-500" />
+                      <span>{store.company.phone}</span>
+                    </div>
+
+                  </div>
+
+                  {/* RIGHT (MAP) */}
+                  {store.company.mapEmbedUrl && (
+                    <div className="w-full md:w-[380px] h-[200px] rounded-xl overflow-hidden">
+                      <iframe
+                        src={store.company.mapEmbedUrl}
+                        width="100%"
+                        height="100%"
+                        loading="lazy"
+                        className="border-0"
+                      />
+                    </div>
+                  )}
+
+                </div>
+              </div>
+            )}
+
+        </div>
+      </div>
+    </>
+  );
+}
