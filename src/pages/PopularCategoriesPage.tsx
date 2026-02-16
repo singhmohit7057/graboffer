@@ -56,99 +56,97 @@ export default function PopularCategoriesPage() {
         {/* Categories Grid */}
         <div className="section-padding py-12">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {categories.map((cat, index) => {
-              const Icon = cat.icon;
-              const isHovered = hoveredId === cat.id;
+          {categories.map((cat, index) => {
+            const Icon = cat.icon;
 
-              if (cat.isLive) {
-                return (
-                  <Link
-                    key={cat.id}
-                    to={cat.pagePath ?? "/"}
-                    onMouseEnter={() => setHoveredId(cat.id)}
-                    onMouseLeave={() => setHoveredId(null)}
-                    className={`group bg-white rounded-2xl shadow-sm transition-all duration-500
-                    hover:shadow-xl cursor-pointer
-                    ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}
-                  `}
-                    style={{ transitionDelay: `${index * 40}ms` }}
-                  >
-                    {/* Header */}
+            return (
+              <Link
+                key={cat.id}
+                to={cat.isLive ? cat.pagePath ?? "/" : "#"}
+                onClick={(e) => {
+                  if (!cat.isLive) {
+                    e.preventDefault();
+                  }
+                }}
+                className={`group bg-white rounded-2xl shadow-sm transition-all duration-500
+                  ${cat.isLive 
+                    ? 'hover:shadow-xl cursor-pointer'
+                    : 'cursor-not-allowed opacity-70'}
+                  ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
+                `}
+                style={{ transitionDelay: `${index * 40}ms` }}
+              >
+                {/* Header */}
+                <div
+                  className="p-6 transition-all duration-300"
+                  style={{ backgroundColor: `${cat.color}15` }}
+                >
+                  <div className="flex items-center justify-between">
                     <div
-                      className="p-6 transition-all duration-300"
+                      className="w-14 h-14 rounded-xl flex items-center justify-center"
+                      style={{ backgroundColor: cat.color }}
+                    >
+                      <Icon className="w-7 h-7 text-white" />
+                    </div>
+
+                    <span
+                      className="px-3 py-1 rounded-full text-xs font-semibold"
                       style={{
-                        backgroundColor: `${cat.color}15`,
+                        backgroundColor: `${cat.color}20`,
+                        color: cat.color,
                       }}
                     >
-                      <div className="flex items-center justify-between">
-                        <div
-                          className="w-14 h-14 rounded-xl flex items-center justify-center"
-                          style={{ backgroundColor: cat.color }}
-                        >
-                          <Icon className="w-7 h-7 text-white" />
-                        </div>
+                      {getOfferCount(cat.key)} Offers
+                    </span>
+                  </div>
 
+                  <h3 className="text-xl font-bold mt-4 text-gray-900">
+                    {cat.name}
+                  </h3>
+
+                  <p className="text-sm mt-1 text-gray-600">
+                    {cat.description}
+                  </p>
+                  </div>
+                  {/* Top Stores */}
+                {cat.topStores && cat.topStores.length > 0 && (
+                  <div className="px-5 mt-4 mb-4">
+                    <p className="text-[11px] font-semibold text-gray-400 mb-2">
+                      TOP STORES
+                    </p>
+
+                    <div className="flex flex-wrap gap-2">
+                      {cat.topStores.map((store, i) => (
                         <span
-                          className="px-3 py-1 rounded-full text-xs font-semibold"
-                          style={{
-                            backgroundColor: `${cat.color}20`,
-                            color: cat.color,
-                          }}
+                          key={i}
+                          className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full"
                         >
-                          {getOfferCount(cat.key)} Offers
+                          {store}
                         </span>
-                      </div>
-
-                      <h3 className="text-xl font-bold mt-4 text-gray-900">{cat.name}</h3>
-
-                      <p className="text-sm mt-1 text-gray-600">{cat.description}</p>
+                      ))}
                     </div>
+                  </div>
+                )}
 
-                    {/* 👇 ADD TOP STORES HERE */}
-                    {cat.topStores && cat.topStores.length > 0 && (
-                      <div className="px-5 mt-4 mb-4">
-                        <p className="text-[11px] font-semibold text-gray-400 mb-2">TOP STORES</p>
-
-                        <div className="flex flex-wrap gap-2">
-                          {cat.topStores.map((store, i) => (
-                            <span key={i} className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
-                              {store}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* CTA */}
-                    <div className="px-5 pb-5">
-                      <div
-                        className="flex items-center justify-center gap-2 py-2.5 rounded-lg font-semibold text-sm"
-                        style={{
-                          backgroundColor: `${cat.color}15`,
-                          color: cat.color,
-                        }}
-                      >
-                        View Offers <ArrowRight className="w-4 h-4" />
-                      </div>
-                    </div>
-                  </Link>
-                );
-              }
-              return (
-                <div
-                  key={cat.id}
-                  onMouseEnter={() => setHoveredId(cat.id)}
-                  onMouseLeave={() => setHoveredId(null)}
-                  className={`group bg-white rounded-2xl shadow-sm transition-all duration-500
-                  cursor-not-allowed
-                  ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}
-                `}
-                  style={{ transitionDelay: `${index * 40}ms` }}
-                ></div>
-              );
-            })}
-          </div>
+                {/* CTA */}
+                <div className="px-5 pb-5">
+                  <div
+                    className="flex items-center justify-center gap-2 py-2.5 rounded-lg font-semibold text-sm"
+                    style={{
+                      backgroundColor: `${cat.color}15`,
+                      color: cat.color,
+                    }}
+                  >
+                    View Offers <ArrowRight className="w-4 h-4" />
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
         </div>
+      </div>
+
+
 
         {/* Featured Section */}
         <div className="bg-white py-16">
