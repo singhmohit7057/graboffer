@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import SEO from '../components/SEO';
-import { offers } from '../data/offers';
-import { categories } from '../data/categories';
+import SEO from '../../components/SEO';
+import { offers } from '../../data/offers';
+import { categories } from '../../data/categories';
 import {Search, Filter, Copy, Check, ExternalLink,} from 'lucide-react';
 
 export default function PopularOffersPage() {

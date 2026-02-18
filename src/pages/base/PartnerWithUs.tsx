@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import SEO from '../../components/SEO';
-import { Handshake, TrendingUp, Users, Target, CheckCircle, ArrowRight, Mail, Phone, Building, Globe, Send } from 'lucide-react';
+import { Handshake, TrendingUp, Users, Target, CheckCircle, ArrowRight, Mail, Phone, Globe, } from 'lucide-react';
+import PartnerForm from '@/components/forms/PartnerForm';
 
 const benefits = [
   {
@@ -88,42 +89,11 @@ const steps = [
 
 export default function PartnerWithUs() {
   const [isVisible, setIsVisible] = useState(false);
-  const [formData, setFormData] = useState({
-    companyName: '',
-    contactName: '',
-    email: '',
-    phone: '',
-    website: '',
-    partnershipType: '',
-    message: '',
-  });
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
     window.scrollTo(0, 0);
   }, []);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        companyName: '',
-        contactName: '',
-        email: '',
-        phone: '',
-        website: '',
-        partnershipType: '',
-        message: '',
-      });
-    }, 3000);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   return (
     <>
@@ -308,8 +278,8 @@ export default function PartnerWithUs() {
       </div>
 
       {/* Application Form */}
-      <div id="apply" className="section-padding py-16">
-        <div className="max-w-3xl mx-auto">
+      <div id="apply" className="section-padding py-20">
+        <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Nunito Sans, sans-serif' }}>
               Apply for Partnership
@@ -320,150 +290,7 @@ export default function PartnerWithUs() {
           </div>
 
           <div className="bg-white rounded-2xl shadow-lg p-8">
-            {isSubmitted ? (
-              <div className="text-center py-12">
-                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="w-10 h-10 text-green-600" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Application Submitted!</h3>
-                <p className="text-gray-600">We&apos;ll review your application and contact you soon.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Company Name *
-                    </label>
-                    <div className="relative">
-                      <Building className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                      <input
-                        type="text"
-                        name="companyName"
-                        value={formData.companyName}
-                        onChange={handleChange}
-                        required
-                        className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:border-[#0064c9] focus:bg-white focus:outline-none transition-all"
-                        placeholder="Your company name"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Contact Name *
-                    </label>
-                    <div className="relative">
-                      <Users className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                      <input
-                        type="text"
-                        name="contactName"
-                        value={formData.contactName}
-                        onChange={handleChange}
-                        required
-                        className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:border-[#0064c9] focus:bg-white focus:outline-none transition-all"
-                        placeholder="Your name"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Email Address *
-                    </label>
-                    <div className="relative">
-                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:border-[#0064c9] focus:bg-white focus:outline-none transition-all"
-                        placeholder="you@company.com"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Phone Number *
-                    </label>
-                    <div className="relative">
-                      <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        required
-                        className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:border-[#0064c9] focus:bg-white focus:outline-none transition-all"
-                        placeholder="+91 98765 43210"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Website
-                    </label>
-                    <div className="relative">
-                      <Globe className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                      <input
-                        type="url"
-                        name="website"
-                        value={formData.website}
-                        onChange={handleChange}
-                        className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:border-[#0064c9] focus:bg-white focus:outline-none transition-all"
-                        placeholder="https://www.yourcompany.com"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Partnership Type *
-                    </label>
-                    <select
-                      name="partnershipType"
-                      value={formData.partnershipType}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:border-[#0064c9] focus:bg-white focus:outline-none transition-all"
-                    >
-                      <option value="">Select type</option>
-                      <option value="coupon">Coupon Partnership</option>
-                      <option value="affiliate">Affiliate Program</option>
-                      <option value="api">API Integration</option>
-                      <option value="sponsored">Sponsored Placements</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={4}
-                    className="w-full px-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:border-[#0064c9] focus:bg-white focus:outline-none transition-all resize-none"
-                    placeholder="Tell us about your business and partnership goals..."
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-[#0064c9] text-white rounded-xl font-semibold hover:bg-[#0052a3] transition-colors"
-                >
-                  Submit Application
-                  <Send className="w-5 h-5" />
-                </button>
-              </form>
-            )}
+            <PartnerForm />
           </div>
         </div>
       </div>

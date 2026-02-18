@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ArrowRight, Heart, TrendingUp, Percent } from "lucide-react";
-import SEO from "../components/SEO";
-import { categories } from "../data/categories";
-import { offers } from "../data/offers";
+import SEO from "../../components/SEO";
+import { categories } from "../../data/categories";
+import { offers } from "../../data/offers";
 
 const getOfferCount = (key: string) => offers.filter((o) => o.categoryKey.toLowerCase() === key.toLowerCase()).length;
 

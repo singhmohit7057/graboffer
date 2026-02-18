@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
-import { creditCards } from '../data/creditCards';
-import SEO from '../components/SEO';
+import { creditCards } from '../../data/creditCards';
+import SEO from '../../components/SEO';
 import { CreditCard, ArrowRight, CheckCircle } from 'lucide-react';
 
 export default function CreditCardDetail() {

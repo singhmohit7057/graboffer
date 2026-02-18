@@ -1,9 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from "react-router-dom";
 import { Mail, Send, Check, Users } from 'lucide-react';
+import { submitForm } from '@/services/formservice';
+
 
 export default function Newsletter() {
   const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -25,16 +30,40 @@ export default function Newsletter() {
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setError(null);
+
+  if (!email) return;
+
+  // DEV MODE (no API key yet)
+  if (!import.meta.env.VITE_WEB3_NEWSLETTER_KEY) {
+    setIsSubmitted(true);
+    setEmail("");
+    return;
+  }
+
+  try {
+    setIsSubmitting(true);
+
+    const response = await submitForm("newsletter", {
+      email,
+      subject: "New Newsletter Subscription",
+      from_name: "GrabOffer Newsletter",
+    });
+
+    if (response.success) {
       setIsSubmitted(true);
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setEmail('');
-      }, 3000);
+      setEmail("");
+    } else {
+      setError(response.message || "Submission failed.");
     }
-  };
+  } catch {
+    setError("Something went wrong. Please try again.");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <section ref={sectionRef} className="py-12 bg-gradient-to-br from-[#0064c9] to-[#0052a3]">
@@ -61,7 +90,7 @@ export default function Newsletter() {
           <div className="flex items-center justify-center gap-2 mb-6">
             <Users className="w-5 h-5 text-white/80" />
             <p className="text-white/80 text-sm md:text-base">
-              <span className="font-bold text-white">35,00,000+</span> Subscriptions Across India! & Counting!
+              <span className="font-bold text-white">1,000+</span> Subscriptions Across India! & Counting!
             </p>
           </div>
 
@@ -82,12 +111,12 @@ export default function Newsletter() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email address"
                 className="w-full pl-12 pr-4 py-4 rounded-full bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-white/30 transition-all"
-                disabled={isSubmitted}
+                disabled={isSubmitting || isSubmitted}
               />
             </div>
             <button
               type="submit"
-              disabled={isSubmitted}
+              disabled={isSubmitting || isSubmitted}
               className={`px-8 py-4 rounded-full font-semibold flex items-center justify-center gap-2 transition-all duration-300 ${
                 isSubmitted
                   ? 'bg-green-500 text-white'
@@ -99,19 +128,36 @@ export default function Newsletter() {
                   <Check className="w-5 h-5" />
                   Subscribed!
                 </>
+              ) : isSubmitting ? (
+                "Submitting..."
               ) : (
                 <>
                   SUBSCRIBE
                   <Send className="w-5 h-5" />
                 </>
               )}
+
             </button>
           </form>
 
+          {error && (
+            <p className="mt-4 text-red-200 text-sm">
+              {error}
+            </p>
+          )}
+
           {/* Trust Text */}
           <p className="mt-6 text-white/60 text-sm">
-            No spam, ever. Unsubscribe anytime.
+            No spam, ever.{" "}
+            <Link
+              to="/unsubscribe"
+              className="underline hover:text-white transition"
+            >
+              Unsubscribe
+            </Link> {" "}
+            Anytime
           </p>
+
         </div>
       </div>
     </section>

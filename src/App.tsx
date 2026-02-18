@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainLayout from './layout/MainLayout';
 
 import HomePage from './pages/HomePage';
-import PopularOffersPage from './pages/PopularOffersPage';
+import PopularOffersPage from './pages/popular/PopularOffersPage';
+import PopularCategoriesPage from './pages/popular/PopularCategoriesPage';
+
 import OfferDetailPage from './pages/offer/OfferDetailPage';
-import PopularCategoriesPage from './pages/PopularCategoriesPage';
 
 import AboutUs from './pages/base/AboutUs';
 import PartnerWithUs from './pages/base/PartnerWithUs';
@@ -24,8 +25,10 @@ import NotFound from './pages/system/NotFound';
 import BlockedPage from './pages/system/BlockedPage';
 import ComingSoon from './pages/system/ComingSoon';
 
-import CreditCardDetail from './pages/CreditCardDetail';
-import CreditCardsList from './pages/CreditCardsList';
+import Unsubscribe from "@/pages/base/Unsubscribe";
+
+import CreditCardDetail from './pages/credit/CreditCardDetail';
+import CreditCardsList from './pages/credit/CreditCardsList';
 
 import StoreIndexPage from './pages/store/StoreIndexPage';
 import StorePage from './pages/store/StorePage';
@@ -77,6 +80,9 @@ function App() {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-conditions" element={<TermsConditions />} />
             <Route path="/cookies-policy" element={<CookiesPolicy />} />
+
+            <Route path="/unsubscribe" element={<Unsubscribe />} />
+
             <Route path="/sitemap" element={<Sitemap />} />
 
             <Route path="*" element={<NotFound />} />

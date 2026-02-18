@@ -1,7 +1,7 @@
 import { useSearchParams, Link } from 'react-router-dom';
-import { creditCards } from '../data/creditCards';
+import { creditCards } from '../../data/creditCards';
 import { ArrowRight, Filter } from 'lucide-react';
-import SEO from '../components/SEO';
+import SEO from '../../components/SEO';
 
 const FILTERS = [
   { label: 'All Cards', value: 'all' },
