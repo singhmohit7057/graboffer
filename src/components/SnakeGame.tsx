@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
+import { useIsMobile } from "../hooks/use-mobile";
 
 export default function SnakeGame() {
+    const isMobile = useIsMobile();
+
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [expanded, setExpanded] = useState(false);
 
@@ -241,6 +244,9 @@ export default function SnakeGame() {
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
   }, [expanded]);
+
+// 🔥 ONLY NOW do conditional return
+  if (isMobile) return null;
 
   return (
     <div

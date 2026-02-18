@@ -1,7 +1,9 @@
 import { useParams, Navigate } from 'react-router-dom';
+import { ArrowRight, Filter } from 'lucide-react';
 import { stores } from '../../data/stores';
 import { offers } from '../../data/offers';
 import SEO from '../../components/SEO';
+import { Link } from 'react-router-dom';
 
 export default function StorePage() {
   const { slug } = useParams();
@@ -58,9 +60,12 @@ export default function StorePage() {
                 return (
                   <div
                     key={offer.id}
+                    onClick={() => window.open(offer.link, '_blank')}
                     className={`relative rounded-2xl p-5 shadow-sm hover:shadow-xl
-                                transition-all duration-300 ${offer.bgColor}`}
+                                transition-all duration-300 cursor-pointer
+                                ${offer.bgColor}`}
                   >
+
                     {/* Badge */}
                     {offer.badge && (
                       <span
@@ -94,27 +99,27 @@ export default function StorePage() {
                       {offer.description}
                     </p>
 
-                    {/* Code */}
-                    <div className="flex items-center justify-between gap-2 mb-4">
-                      <span className="text-xs font-mono bg-gray-100 px-3 py-1 rounded">
-                        {offer.code}
-                      </span>
-                      <a
-                        href={offer.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm font-semibold text-[#0064c9] hover:underline"
-                      >
-                        Use Deal →
-                      </a>
-                    </div>
-
                     {/* Meta */}
                     <div className="flex justify-between text-xs text-gray-400">
                       <span>Expires: {offer.expiry}</span>
                       <span>{offer.usage}</span>
                     </div>
-                  </div>
+
+                   {/* CTA */}
+                    <div className="mt-4 flex items-center justify-between">
+                      <span className="text-blue-600 font-semibold text-sm">
+                          Visit Store →
+                      </span>
+
+                      <Link
+                        to={`/offer/${offer.slug}`}
+                        onClick={(e) => e.stopPropagation()}
+                        className="text-sm flex items-center gap-1 text-gray-500 hover:text-black"
+                      >
+                        Details <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </div>
+                  </div> 
                 );
               })}
             </div>

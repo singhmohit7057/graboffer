@@ -4,6 +4,7 @@ import MainLayout from './layout/MainLayout';
 
 import HomePage from './pages/HomePage';
 import PopularOffersPage from './pages/PopularOffersPage';
+import OfferDetailPage from './pages/offer/OfferDetailPage';
 import PopularCategoriesPage from './pages/PopularCategoriesPage';
 
 import AboutUs from './pages/base/AboutUs';
@@ -56,6 +57,7 @@ function App() {
             <Route path="/credit-cards/:slug" element={<CreditCardDetail />} />
 
             <Route path="/offers" element={<PopularOffersPage />} />
+            <Route path="/offer/:slug" element={<OfferDetailPage />} />
             <Route path="/categories" element={<PopularCategoriesPage />} />
 
             <Route path="/category" element={<CategoryIndexPage />} />

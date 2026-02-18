@@ -1,4 +1,5 @@
 import { useParams, useSearchParams, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { categories } from '../../data/categories';
 import { offers } from '../../data/offers';
 import { ArrowRight, Filter } from 'lucide-react';
@@ -183,13 +184,12 @@ const updateParams = (newParams: Record<string, string>) => {
                 const Icon = offer.icon;
 
                 return (
-                  <a
+                  <div
                     key={offer.id}
-                    href={offer.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-white rounded-2xl p-5 shadow-sm hover:shadow-xl transition group"
+                    onClick={() => window.open(offer.link, '_blank')}
+                    className="bg-white rounded-2xl p-5 shadow-sm hover:shadow-xl transition group cursor-pointer"
                   >
+
                     {/* Top */}
                     <div className="flex items-start justify-between mb-3">
                       <div>
@@ -225,11 +225,25 @@ const updateParams = (newParams: Record<string, string>) => {
 
                     {/* CTA */}
                     <div className="mt-4 flex items-center justify-between">
-                      <span className="text-blue-600 font-semibold text-sm flex items-center gap-1">
-                        View Offer <ArrowRight className="w-4 h-4" />
-                      </span>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.open(offer.link, '_blank');
+                        }}
+                        className="text-blue-600 font-semibold text-sm"
+                      >
+                        Visit Store →
+                      </button>
+
+                      <Link
+                        to={`/offer/${offer.slug}`}
+                        onClick={(e) => e.stopPropagation()}
+                        className="text-sm flex items-center gap-1 text-gray-500 hover:text-black"
+                      >
+                        Details <ArrowRight className="w-4 h-4" />
+                      </Link>
                     </div>
-                  </a>
+                  </div>
                 );
               })}
             </div>

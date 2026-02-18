@@ -257,7 +257,7 @@ export default function HowItWorks() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link 
-              to="/popular-offers"
+              to="/offers"
               className="px-8 py-4 bg-white text-[#0064c9] rounded-full font-semibold hover:bg-gray-100 transition-colors"
             >
               Browse Offers

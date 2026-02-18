@@ -246,7 +246,7 @@ export const categories: Category[] = [
     color: '#29b6f6',
     description: 'Travel deals',
     pagePath: '/category/travel',
-    isLive: false,
+    isLive: true,
     topStores: ['A', 'B', "C"],
   },
   {

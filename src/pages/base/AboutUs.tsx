@@ -279,7 +279,7 @@ export default function AboutUs() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a 
-              href="/popular-offers"
+              href="/offers"
               className="px-8 py-3 bg-white text-[#0064c9] rounded-full font-semibold hover:bg-gray-100 transition-colors"
             >
               Explore Offers

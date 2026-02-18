@@ -3,11 +3,12 @@ import {Bus, Laptop, Globe, CreditCard, Star, Flame, TrendingUp,
 
 export type Offer = {
   id: number;
+  slug: string;
   badge: string;
   badgeColor: string;
   title: string;
   subtitle: string;
-  description: string;
+  description: string;  // short description for tile
   code: string;
   link: string;
   icon: any;
@@ -18,29 +19,65 @@ export type Offer = {
   store: string;         //Must Match stores.name from stores.ts
   expiry: string;
   usage: string;
+  longDescription?: string;   // long description for detail page
+  terms?: string[];            
+  faqs?: {                      
+    question: string;
+    answer: string;
+  }[];
 };
 
 export const offers: Offer[] = [
     {
     id: 1,
+    slug: 'redbus-bus500-offer',
     badge: 'GRABON EXCLUSIVE',
     badgeColor: 'bg-[#0064c9]',
     title: 'Get Up To Rs 500 OFF',
     subtitle: 'On Your Bus Ticket Bookings',
     description: 'Valid on all bus bookings across India. No minimum booking amount required.',
+
     code: 'BUS500',
     link: 'https://www.redbus.in',
+
     icon: Bus,
     gradient: 'from-blue-500 to-blue-600',
     bgColor: 'bg-blue-50',
+
     categoryKey: 'travel',
     tags: [''],
     store: 'RedBus',
     expiry: '31 Jan 2026',
     usage: '12.5k used',
+
+    longDescription: `
+    Use this exclusive RedBus Bus500 coupon to save up to ₹500 instantly.
+    Valid on all bus bookings across India.
+    No minimum booking amount required.
+    Offer valid for limited time only.
+    `,
+
+    terms: [
+    'Valid only on selected routes',
+    'Cannot be combined with other offers',
+    'One time use per user',
+  ],
+
+  faqs: [
+    {
+      question: 'Can I use this coupon multiple times?',
+      answer: 'No, this coupon is valid only once per user.',
+    },
+    {
+      question: 'Is there a minimum booking value?',
+      answer: 'No minimum booking amount is required.',
+    },
+  ],
   },
+
   {
     id: 2,
+    slug: '',
     badge: 'Republic Day Special',
     badgeColor: 'bg-[#d32f2f]',
     title: 'Laptops - Up To 40% OFF',
@@ -59,6 +96,7 @@ export const offers: Offer[] = [
   },
   {
     id: 3,
+    slug: '',
     badge: 'DOMAIN EXCLUSIVE',
     badgeColor: 'bg-[#f57c00]',
     title: 'Get .Com Domain 1st Year',
@@ -77,6 +115,7 @@ export const offers: Offer[] = [
   },
   {
     id: 4,
+    slug: '',
     badge: 'SITEWIDE OFF',
     badgeColor: 'bg-[#4caf50]',
     title: 'Flat 87% OFF',
@@ -95,6 +134,7 @@ export const offers: Offer[] = [
   },
   {
     id: 5,
+    slug: '',
     badge: 'TRENDING',
     badgeColor: 'bg-purple-600',
     title: 'Flat 50% OFF',
@@ -113,6 +153,7 @@ export const offers: Offer[] = [
   },
   {
     id: 6,
+    slug: '',
     badge: 'HOT DEAL',
     badgeColor: 'bg-[#d32f2f]',
     title: 'Up To 70% OFF + Extra 20%',
@@ -131,6 +172,7 @@ export const offers: Offer[] = [
   },
   {
     id: 7,
+    slug: '',
     badge: 'EXCLUSIVE',
     badgeColor: 'bg-[#0064c9]',
     title: 'Flat Rs 200 OFF',
@@ -149,6 +191,7 @@ export const offers: Offer[] = [
   },
   {
     id: 8,
+    slug: '',
     badge: 'WEEKEND SPECIAL',
     badgeColor: 'bg-[#f57c00]',
     title: 'Buy 1 Get 1 Free',
@@ -167,6 +210,7 @@ export const offers: Offer[] = [
   },
   {
     id: 8,
+    slug: '',
     badge: 'WEEKEND OFFER',
     badgeColor: 'bg-[#f57c00]',
     title: 'Buy 1 Get 1 Free',

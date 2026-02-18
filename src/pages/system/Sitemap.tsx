@@ -1,4 +1,9 @@
 import { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
+import { categories } from "../../data/categories";
+import { stores } from "../../data/stores";
+import { offers } from "../../data/offers";
+
 import SEO from '../../components/SEO';
 import { Map, Home, Tag, Grid, Info, Shield, Handshake, HelpCircle, Mail, Phone, ExternalLink } from 'lucide-react';
 
@@ -11,7 +16,8 @@ const sitemapData = [
       { name: 'Home', href: '/' },
       { name: 'Popular Offers', href: '/offers' },
       { name: 'Popular Categories', href: '/categories' },
-      { name: 'Stores', href: '/stores' },
+      { name: 'Stores', href: '/store' },
+       { name: 'Category', href: '/category' },
       { name: 'Submit a Coupon', href: '/coming-soon' },
     ],
   },
@@ -48,17 +54,6 @@ const sitemapData = [
   },
 ];
 
-const popularStores = [
-  'Amazon', 'Flipkart', 'Myntra', 'Swiggy', 'Zomato', 'MakeMyTrip',
-  'Goibibo', 'RedBus', 'BookMyShow', 'Nykaa', 'AJIO', 'Domino\'s',
-  'Pizza Hut', 'Uber', 'Ola', 'Paytm', 'PhonePe', 'Google Pay',
-];
-
-const popularCategories = [
-  'Fashion', 'Electronics', 'Travel', 'Food', 'Recharge', 'Health',
-  'Beauty', 'Groceries', 'Entertainment', 'Hosting', 'Education', 'Services',
-];
-
 export default function Sitemap() {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -66,6 +61,25 @@ export default function Sitemap() {
     setIsVisible(true);
     window.scrollTo(0, 0);
   }, []);
+
+      // ✅ Live Categories
+    const liveCategories = categories.filter(c => c.isLive);
+
+    // ✅ Live Stores
+    const liveStores = stores.filter(s => s.isLive);
+
+    // ✅ Live Offers (only if store + category live)
+    const liveOffers = offers.filter(offer => {
+      const categoryLive = liveCategories.some(
+        c => c.key.toLowerCase() === offer.categoryKey.toLowerCase()
+      );
+
+      const storeLive = liveStores.some(
+        s => s.name.toLowerCase() === offer.store.toLowerCase()
+      );
+
+      return categoryLive && storeLive;
+    });
 
   return (
     <div className="pt-[140px] md:pt-[160px] min-h-screen bg-gray-50">
@@ -140,52 +154,80 @@ export default function Sitemap() {
           })}
         </div>
 
-        {/* Popular Stores Section */}
-        <div className="bg-white rounded-2xl shadow-sm p-8 mb-8">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-              <Tag className="w-5 h-5 text-[#0064c9]" />
+        {/* Live Stores Section */}
+          <div className="bg-white rounded-2xl shadow-sm p-8 mb-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                <Tag className="w-5 h-5 text-[#0064c9]" />
+              </div>
+              <h2 className="text-xl font-bold text-gray-900">All Stores</h2>
             </div>
-            <h2 className="text-xl font-bold text-gray-900">Popular Stores</h2>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {popularStores.map((store, index) => (
-              <a
-                key={index}
-                href={`#${store.toLowerCase().replace(/\s+/g, '-')}`}
-                className={`flex items-center gap-2 px-4 py-3 bg-gray-50 rounded-xl text-gray-700 hover:bg-blue-50 hover:text-[#0064c9] transition-all ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-                style={{ transitionDelay: `${index * 30}ms` }}
-              >
-                <span className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-sm font-bold text-gray-400">
-                  {store.charAt(0)}
-                </span>
-                <span className="text-sm font-medium">{store}</span>
-              </a>
-            ))}
-          </div>
-        </div>
 
-        {/* Popular Categories Section */}
-        <div className="bg-white rounded-2xl shadow-sm p-8 mb-8">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
-              <Grid className="w-5 h-5 text-[#f57c00]" />
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {liveStores.map((store) => (
+                <Link
+                  key={store.slug}
+                  to={`/store/${store.slug}`}
+                  className="flex items-center gap-2 px-4 py-3 bg-gray-50 rounded-xl text-gray-700 hover:bg-blue-50 hover:text-[#0064c9] transition-all"
+                >
+                  <span className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-sm font-bold text-gray-400">
+                    {store.name.charAt(0)}
+                  </span>
+                  <span className="text-sm font-medium">{store.name}</span>
+                </Link>
+              ))}
             </div>
-            <h2 className="text-xl font-bold text-gray-900">Popular Categories</h2>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {popularCategories.map((category, index) => (
-              <a
-                key={index}
-                href={`#${category.toLowerCase().replace(/\s+/g, '-')}`}
-                className={`flex items-center justify-center px-4 py-3 bg-gray-50 rounded-xl text-gray-700 hover:bg-orange-50 hover:text-[#f57c00] transition-all ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-                style={{ transitionDelay: `${index * 30}ms` }}
-              >
-                <span className="text-sm font-medium">{category}</span>
-              </a>
-            ))}
+
+        {/* Live Categories Section */}
+          <div className="bg-white rounded-2xl shadow-sm p-8 mb-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                <Grid className="w-5 h-5 text-[#f57c00]" />
+              </div>
+              <h2 className="text-xl font-bold text-gray-900">All Categories</h2>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {liveCategories.map((category) => (
+                <Link
+                  key={category.key}
+                  to={`/category/${category.key}`}
+                  className="flex items-center justify-center px-4 py-3 bg-gray-50 rounded-xl text-gray-700 hover:bg-orange-50 hover:text-[#f57c00] transition-all"
+                >
+                  <span className="text-sm font-medium">{category.name}</span>
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
+
+        {/* Live Offers Section */}
+          <div className="bg-white rounded-2xl shadow-sm p-8 mb-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                <Tag className="w-5 h-5 text-green-600" />
+              </div>
+              <h2 className="text-xl font-bold text-gray-900">All Offers</h2>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {liveOffers.map((offer) => (
+                <Link
+                  key={offer.id}
+                  to={`/offer/${offer.slug}`}
+                  className="p-4 bg-gray-50 rounded-xl hover:bg-green-50 transition"
+                >
+                  <p className="font-medium text-sm text-gray-800">
+                    {offer.title}
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    {offer.store}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+
 
         {/* Contact Section */}
         <div className="bg-gradient-to-r from-[#0064c9] to-[#1976d2] rounded-2xl p-8 text-white">

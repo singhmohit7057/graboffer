@@ -99,4 +99,13 @@ export const stores: Store[] = [
     pagePath: '/store/12go',
     isLive: true,
   },
+  {
+    id: 11,
+    name: 'RedBus',
+    slug: 'redbus',
+    logo: '/logo/redbus.png',
+    color: '#FF9900',
+    pagePath: '/store/12go',
+    isLive: true,
+  },
 ];

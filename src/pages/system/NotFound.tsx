@@ -33,7 +33,7 @@ export default function NotFound() {
           </Link>
 
           <Link
-            to="/popular-offers"
+            to="/offers"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-gray-200 rounded-full font-semibold text-gray-700 hover:bg-gray-100 transition"
           >
             <Search className="w-5 h-5" />
