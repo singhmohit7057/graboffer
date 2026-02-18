@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Send, CheckCircle } from "lucide-react";
-import { submitForm } from "@/services/formservice";
+import { submitForm } from "../../services/formService";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({

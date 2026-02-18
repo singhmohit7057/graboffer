@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
-import { submitForm } from "@/services/formservice";
+import { submitForm } from "../../services/formService";
 
 const schema = z.object({
   email: z.string().email("Invalid email"),

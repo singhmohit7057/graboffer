@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from "react-router-dom";
 import { Mail, Send, Check, Users } from 'lucide-react';
-import { submitForm } from '@/services/formservice';
+import { submitForm } from '@/services/formService';
 
 
 export default function Newsletter() {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Building, Users, Mail, Phone, Globe, Send, CheckCircle } from "lucide-react";
-import { submitForm } from "@/services/formservice";
+import { submitForm } from "../../services/formService";
 
 export default function PartnerForm() {
   const [formData, setFormData] = useState({

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Star, Send, CheckCircle, ThumbsUp, Lightbulb, Bug, MessageSquare } from "lucide-react";
-import { submitForm } from "@/services/formservice";
+import { submitForm } from "../../services/formService";
 
 const feedbackTypes = [
   { id: "suggestion", label: "Suggestion", icon: Lightbulb, color: "#f57c00" },
