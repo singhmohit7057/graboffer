@@ -1,4 +1,4 @@
-import UnsubscribeForm from "@/components/forms/UnsubscribeForm";
+import UnsubscribeForm from "../../components/forms/UnsubscribeForm";
 
 export default function Unsubscribe() {
   return (
