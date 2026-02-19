@@ -1,18 +1,13 @@
 import SEO from '../components/SEO';
 import HeroCarousel from '../sections/HeroCarousel';
 import PopularOffers from '../sections/PopularOffers';
-import PopularStores from '../sections/PopularStores';
-import FeaturedStore from '../sections/FeaturedStore';
-import TopCoupons from '../sections/TopCoupons';
-import DealsOfTheDay from '@/sections/DealsOfTheDay';
 import TrendingOffers from '../sections/TrendingOffers';
-import Exclusive from '../sections/Exclusive';
-import Newsletter from '../sections/Newsletter';
 import PopularCategories from '../sections/PopularCategories';
-
+import PopularStores from '../sections/PopularStores';
+import Exclusive from '../sections/Exclusive';
+import FeaturedStore from '../sections/FeaturedStore';
+import Newsletter from '../sections/Newsletter';
 import FeaturedCreditCard from '../sections/FeaturedCreditCard';
-import BestCreditCards from '@/sections/BestFreeCards';
-import BestFuelCards from '@/sections/BestFuelCards';
 
 export default function HomePage() {
   return (
@@ -27,13 +22,9 @@ export default function HomePage() {
       <PopularCategories />
       <PopularStores />
       <Exclusive />
-      <TopCoupons />
-      <DealsOfTheDay />
+      <FeaturedCreditCard />
       <FeaturedStore />
       <Newsletter />
-      <FeaturedCreditCard />
-      <BestCreditCards />
-      <BestFuelCards />
     </>
   );
 }
