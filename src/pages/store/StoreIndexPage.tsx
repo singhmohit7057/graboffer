@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import { stores } from '../../data/stores';
+import { offers } from '../../data/offers';
 
 export default function StoreIndexPage() {
   const [query, setQuery] = useState('');
@@ -24,6 +25,13 @@ export default function StoreIndexPage() {
     },
     {}
   );
+
+// Count live offers per store name
+const offerCountMap = offers.reduce<Record<string, number>>((acc, offer) => {
+  acc[offer.store] = (acc[offer.store] || 0) + 1;
+  return acc;
+}, {});
+
 
   return (
     <div className="pt-[140px] pb-24 section-padding min-h-screen bg-gray-50">
@@ -110,6 +118,7 @@ export default function StoreIndexPage() {
                       </div>
 
                       {/* Text */}
+                    <div className="flex justify-between items-center w-full">
                       <div>
                         <p className="font-medium text-gray-900">
                           {store.name}
@@ -118,6 +127,13 @@ export default function StoreIndexPage() {
                           View available offers
                         </p>
                       </div>
+
+                      <span className="text-xs font-semibold bg-blue-50 text-[#0064c9] px-3 py-1 rounded-full">
+                        {offerCountMap[store.name] || 0}{" "}
+                        {offerCountMap[store.name] === 1 ? "Offer" : "Offers"}
+                      </span>
+                    </div>
+
                     </Link>
                   ))}
                 </div>

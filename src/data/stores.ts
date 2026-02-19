@@ -105,7 +105,7 @@ export const stores: Store[] = [
     slug: 'redbus',
     logo: '/logo/redbus.png',
     color: '#FF9900',
-    pagePath: '/store/12go',
+    pagePath: '/store/redbus',
     isLive: true,
   },
 ];

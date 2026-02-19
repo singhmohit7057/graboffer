@@ -12,6 +12,7 @@ export type Offer = {
   code: string;
   link: string;
   icon: any;
+  bannerImage?: string;
   gradient: string;
   bgColor: string;
   categoryKey: string;   //MUST MATCH categories.key from categories.ts
@@ -41,6 +42,7 @@ export const offers: Offer[] = [
     link: 'https://www.redbus.in',
 
     icon: Bus,
+    bannerImage: '/banner/redbus-banner.png',
     gradient: 'from-blue-500 to-blue-600',
     bgColor: 'bg-blue-50',
 
