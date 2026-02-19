@@ -1,7 +1,10 @@
 {
   "rewrites": [
     {
-      "source": "/((?!assets|logo|images|cards|favicon.png).*)",
+      "source": "/(.*)",
+      "has": [
+        { "type": "header", "key": "accept", "value": "text/html.*" }
+      ],
       "destination": "/index.html"
     }
   ]
