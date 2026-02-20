@@ -108,4 +108,13 @@ export const stores: Store[] = [
     pagePath: '/store/redbus',
     isLive: true,
   },
+  {
+    id: 12,
+    name: 'Dreamhost',
+    slug: 'dreamhost',
+    logo: '/logo/dreamhost.png',
+    color: '#FF9900',
+    pagePath: '/store/dreamhost',
+    isLive: true,
+  },
 ];

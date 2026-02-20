@@ -1,4 +1,4 @@
-import {Bus, Laptop, Globe, CreditCard, Star, Flame, TrendingUp,
+import {Bus, Laptop, Globe, CreditCard, Server, Star, Flame, TrendingUp,
 } from 'lucide-react';
 
 export type Offer = {
@@ -78,6 +78,55 @@ export const offers: Offer[] = [
   },
 
   {
+  id: 2,
+  slug: 'dreamhost-hosting70-offer',
+  badge: 'HOSTING EXCLUSIVE',
+  badgeColor: 'bg-[#ff6600]',
+  title: 'Get Up To 70% OFF',
+  subtitle: 'On Web Hosting Plans',
+  description: 'Save big on Shared, WordPress & VPS hosting plans. Limited-time offer for new customers.',
+
+  code: 'DH70SAVE',
+  link: 'https://www.dreamhost.com',
+
+  icon: Server,
+  bannerImage: '/banner/dreamhost-banner.jpg',
+  gradient: 'from-orange-500 to-pink-500',
+  bgColor: 'bg-orange-50',
+
+  categoryKey: 'hosting',
+  tags: [],
+  store: 'Dreamhost',
+  expiry: '31 Mar 2026',
+  usage: '9.8k used',
+
+  longDescription: `
+  Use this exclusive DreamHost coupon to get up to 70% OFF on web hosting plans.
+  Applicable on Shared Hosting, WordPress Hosting, and VPS plans.
+  Perfect for bloggers, startups, and businesses launching new websites.
+  Offer valid for new users only for a limited time.
+  `,
+
+  terms: [
+    'Valid for new customers only',
+    'Discount applies to first billing cycle',
+    'Cannot be combined with other promotional offers',
+    'Applicable on selected hosting plans only',
+  ],
+
+  faqs: [
+    {
+      question: 'Is this offer valid on domain registration?',
+      answer: 'The discount primarily applies to hosting plans. Free domain may be included in selected yearly plans.',
+    },
+    {
+      question: 'Can I upgrade my plan later?',
+      answer: 'Yes, you can upgrade your hosting plan anytime from your DreamHost dashboard.',
+    },
+  ],
+},
+
+  {
     id: 2,
     slug: '',
     badge: 'Republic Day Special',
@@ -125,7 +174,7 @@ export const offers: Offer[] = [
     description: 'Huge savings on all hosting plans. Perfect for startups and businesses.',
     code: 'HOST87',
     link: 'https://www.hostinger.in',
-    icon: CreditCard,
+    icon: Server,
     gradient: 'from-green-500 to-green-600',
     bgColor: 'bg-green-50',
     categoryKey: 'hosting',
