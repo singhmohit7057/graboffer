@@ -125,7 +125,7 @@ export const categories: Category[] = [
     color: '#607d8b',
     description: 'Electronics & gadgets',
     pagePath: '/category/electronics',
-    isLive: false,
+    isLive: true,
     topStores: ['A', 'B', "C"],
   },
   {
@@ -139,6 +139,7 @@ export const categories: Category[] = [
     isLive: false,
     topStores: ['A', 'B', "C"],
   },
+  /* Hide
   {
     id: 12,
     key: 'pizza',
@@ -150,6 +151,7 @@ export const categories: Category[] = [
     isLive: false,
     topStores: ['A', 'B', "C"],
   },
+  */
   {
     id: 13,
     key: 'entertainment',
@@ -249,6 +251,7 @@ export const categories: Category[] = [
     isLive: false,
     topStores: ['A', 'B', "C"],
   },
+  /* Hide
   {
     id: 22,
     key: 'kitchen',
@@ -260,6 +263,7 @@ export const categories: Category[] = [
     isLive: false,
     topStores: ['A', 'B', "C"],
   },
+  */
   {
     id: 23,
     key: 'footwear',
@@ -304,7 +308,7 @@ export const categories: Category[] = [
     isLive: false,
     topStores: ['A', 'B', "C"],
   },
-  /* TAG FILTER 
+  /* Hide 
   {
     id: 27,
     key: 'credit-cards',

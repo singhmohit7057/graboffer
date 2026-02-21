@@ -61,19 +61,10 @@ export const stores: Store[] = [
     logo: '/logo/hostinger.png',
     color: '#FF9900',
     pagePath: '/store/hostinger',
-    isLive: false,
+    isLive: true,
   },
   {
     id: 7,
-    name: 'BigRock',
-    slug: 'bigrock',
-    logo: '/logo/bigrock.png',
-    color: '#FF9900',
-    pagePath: '/store/bigrock',
-    isLive: false,
-  },
-  {
-    id: 8,
     name: 'BookMyShow',
     slug: 'bookmyshow',
     logo: '/logo/bookmyshow.png',
@@ -82,7 +73,7 @@ export const stores: Store[] = [
     isLive: true,
   },
   {
-    id: 9,
+    id: 8,
     name: 'Ajio',
     slug: 'ajio',
     logo: '/logo/ajio.png',
@@ -91,7 +82,7 @@ export const stores: Store[] = [
     isLive: true,
   },
   {
-    id: 10,
+    id: 9,
     name: '12Go',
     slug: '12go',
     logo: '/logo/12go.png',
@@ -100,7 +91,7 @@ export const stores: Store[] = [
     isLive: true,
   },
   {
-    id: 11,
+    id: 10,
     name: 'RedBus',
     slug: 'redbus',
     logo: '/logo/redbus.png',
@@ -109,7 +100,7 @@ export const stores: Store[] = [
     isLive: true,
   },
   {
-    id: 12,
+    id: 11,
     name: 'Dreamhost',
     slug: 'dreamhost',
     logo: '/logo/dreamhost.png',
