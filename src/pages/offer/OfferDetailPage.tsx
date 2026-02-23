@@ -21,7 +21,9 @@ export default function OfferDetailPage() {
     <>
       <SEO
         title={`${offer.title} – ${offer.store} Offer | GrabOffer`}
-        description={offer.description}
+        description={`Get ${offer.title} on ${offer.store}. Valid till ${offer.expiry}. 100% verified & updated deal.`}
+        keywords={`${offer.store} coupon code, ${offer.store} promo code, ${offer.store} discount, ${offer.store} deal, ${offer.store} offer ${offer.code}`}
+        image={offer.bannerImage}
       />
 
 
@@ -147,6 +149,43 @@ export default function OfferDetailPage() {
 
         </div>
       </div>
+
+      {/* Offer Schema */}
+      <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Offer",
+        name: offer.title,
+        description: offer.description,
+        url: `https://graboffer.vercel.app/offer/${offer.slug}`,
+        priceCurrency: "INR",
+        availability: "https://schema.org/InStock",
+        validThrough: offer.expiry,
+        seller: {
+          "@type": "Organization",
+          name: offer.store
+        }
+      })}
+      </script>
+
+      {/* FAQ schema */}
+      {offer.faqs && (
+      <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: offer.faqs.map(faq => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer
+          }
+        }))
+      })}
+      </script>
+      )}
+
     </>
   );
 }

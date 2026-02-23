@@ -3,6 +3,7 @@ import { ArrowRight, Filter } from 'lucide-react';
 import { stores } from '../../data/stores';
 import { offers } from '../../data/offers';
 import SEO from '../../components/SEO';
+import NoOfferPage from './NoOfferPage';
 import { Link } from 'react-router-dom';
 
 export default function StorePage() {
@@ -19,6 +20,10 @@ export default function StorePage() {
   const storeOffers = offers.filter(
     o => o.store.toLowerCase() === store.name.toLowerCase()
   );
+  // Store found but no offers
+  if (storeOffers.length === 0) {
+    return <NoOfferPage store={store} />;
+  }
 
   return (
     <>
@@ -37,6 +42,7 @@ export default function StorePage() {
               alt={store.name}
               className="w-14 h-14 rounded-lg bg-white p-2 shadow"
             />
+            
             <div>
               <h1 className="text-3xl font-bold">{store.name} Offers</h1>
               <p className="text-gray-600 text-sm">
@@ -45,14 +51,14 @@ export default function StorePage() {
             </div>
           </div>
 
+          {/* 🔹 Store Description Card */}
+          <div className="bg-white rounded-2xl shadow-sm p-6 mb-7">
+            <p className="text-gray-600 text-sm leading-relaxed">
+              {store.description}
+            </p>
+          </div>
+
           {/* Offers */}
-          {storeOffers.length === 0 ? (
-            <div className="bg-white rounded-xl p-8 text-center shadow">
-              <p className="text-gray-500">
-                No active offers available right now.
-              </p>
-            </div>
-          ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {storeOffers.map(offer => {
                 const Icon = offer.icon;
@@ -123,7 +129,6 @@ export default function StorePage() {
                 );
               })}
             </div>
-          )}
 
         </div>
       </div>
