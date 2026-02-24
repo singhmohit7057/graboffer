@@ -4,6 +4,7 @@ import { ArrowRight, Heart, TrendingUp, Percent } from "lucide-react";
 import SEO from "../../components/SEO";
 import { categories } from "../../data/categories";
 import { offers } from "../../data/offers";
+import Notify from '../../components/forms/Notify';
 
 const getOfferCount = (key: string) => offers.filter((o) => o.categoryKey.toLowerCase() === key.toLowerCase()).length;
 
@@ -199,16 +200,12 @@ export default function PopularCategoriesPage() {
                 <p className="text-white/80 mb-6">
                   Get notified when new offers are added to your favorite categories.
                 </p>
-                <div className="flex gap-3">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="flex-1 px-4 py-3 rounded-xl bg-white/20 text-white placeholder-white/60 border border-white/30 focus:outline-none focus:border-white"
-                  />
-                  <button className="px-6 py-3 bg-white text-[#0064c9] rounded-xl font-semibold hover:bg-gray-100 transition-colors">
-                    Subscribe
-                  </button>
-                </div>
+                <Notify
+                  entityName="Categories"
+                  entityType="category"
+                  brandColor="#0064c9"
+                  variant="dark"
+                />
               </div>
             </div>
           </div>

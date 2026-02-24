@@ -32,8 +32,9 @@ export default function UnsubscribeForm() {
 
     const res = await submitForm("unsubscribe", {
       subject: "Unsubscribe Request",
-        from_name: "GrabOffer UnSubscribe",
+      from_name: "GrabOffer UnSubscribe",
       email,
+      message: "Unsubscribe Request - User wants to UnSubscribe from Newsletter."
     });
 
     setLoading(false);

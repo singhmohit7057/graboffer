@@ -39,10 +39,12 @@ export default function ContactForm() {
       setIsSubmitting(true);
 
   const response = await submitForm("contact", {
+  type: "contact",
   name: formData.name,
   email: formData.email,
   subject: `Contact - ${formData.subject}`,
   message: formData.message,
+  source: "website",
 
   // Sender name shown in Web3Forms
   from_name: "GrabOffer ContactUs",

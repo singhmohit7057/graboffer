@@ -50,6 +50,7 @@ export default function Newsletter() {
       email,
       subject: "New Newsletter Subscription",
       from_name: "GrabOffer Newsletter",
+      message: "NewsLetter Subscription - User wants to Subscribe to Newsletter."
     });
 
     if (response.success) {

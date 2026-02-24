@@ -1,5 +1,6 @@
 import SEO from '../../components/SEO';
 import type { Store } from '../../data/stores';
+import Notify from '../../components/forms/Notify';
 import { Bell } from 'lucide-react';
 
 type Props = {
@@ -60,12 +61,11 @@ export default function NoOfferPage({ store }: Props) {
               We update offers regularly — check back soon.
             </p>
 
-            <button
-              className="px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 hover:opacity-90"
-              style={{ backgroundColor: store.color }}
-            >
-              Notify Me When Available
-            </button>
+          <Notify
+            entityName={store.name}
+            entityType="store"
+            brandColor={store.color}
+          />
           </div>
 
           {/* 🔹 FAQ Section */}

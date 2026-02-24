@@ -30,10 +30,16 @@ export default function PartnerForm() {
 
     try {
       const result = await submitForm("partner", {
-        ...formData,
-        subject: "New Partner Application",
+        name: formData.contactName,
+        partnership_type: formData.partnershipType,
+        email: formData.email,
+        company: formData.companyName,
+        contact: formData.phone,
+        website: formData.website,
+        subject: `New Partner Application - ${formData.partnershipType}`,
+        message: formData.message,
 
-         // Sender name shown in Web3Forms
+       // Sender name shown in Web3Forms
          from_name: "GrabOffer Partner",
       });
 

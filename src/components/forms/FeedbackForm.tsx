@@ -60,9 +60,13 @@ export default function FeedbackForm() {
 
     try {
       const result = await submitForm("feedback", {
-        ...formData,
 
+      name: formData.name,
+      email: formData.email,
+      feedback_type: formData.type, 
+      rating: formData.rating,
       subject: `New Feedback - ${formData.subject}`,
+      message: formData.message,
       from_name: "GrabOffer Feedback",
     });
 
@@ -130,7 +134,7 @@ export default function FeedbackForm() {
       {/* Rating */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-3">
-          How would you rate your experience with GrabOn?
+          How would you rate your experience with GrabOffer?
         </label>
         <div className="flex items-center justify-center gap-2">
           {[1, 2, 3, 4, 5].map((star) => (
