@@ -47,7 +47,7 @@ const sitemapData = [
     icon: HelpCircle,
     color: '#9c27b0',
     links: [
-      { name: 'FAQs', href: '/faqs' },
+      { name: 'FAQs', href: '/faq' },
       { name: 'Feedback', href: '/feedback' },
       { name: 'Contact Us', href: '/contact-us' },
     ],
