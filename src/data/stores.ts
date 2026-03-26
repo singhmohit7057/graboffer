@@ -7,6 +7,14 @@ export type Store = {
   color: string;
   pagePath: string;  // clickable link
   isLive: boolean;
+
+  company?: {
+    legalName: string;
+    address: string;
+    email: string;
+    phone: string;
+    mapEmbedUrl?: string;
+  };
 };
 
 export const stores: Store[] = [
@@ -120,5 +128,13 @@ export const stores: Store[] = [
     color: '#FF9900',
     pagePath: '/store/dreamhost',
     isLive: true,
+
+    company: {
+      legalName: 'DreamHost, LLC',
+      address: '417 Associated Road P.O Box #257, Brea, CA, 92821, USA',
+      email: 'support@dreamhost.com',
+      phone: '+1 800 578 9899',
+      mapEmbedUrl: 'https://www.google.com/maps?q=417+Associated+Road+Brea+CA&output=embed'
+    }
   },
 ];

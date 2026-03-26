@@ -5,6 +5,7 @@ import { offers } from '../../data/offers';
 import SEO from '../../components/SEO';
 import NoOfferPage from './NoOfferPage';
 import { Link } from 'react-router-dom';
+import { Building2, MapPin, Mail, Phone } from "lucide-react";
 
 export default function StorePage() {
   const { slug } = useParams();
@@ -129,6 +130,59 @@ export default function StorePage() {
                 );
               })}
             </div>
+          
+          {/* Company Info */}
+            {store.company && (
+              <div className="bg-gray-100 rounded-2xl p-6 mt-8 mb-10">
+                
+                {/* Title */}
+                <h2 className="text-xl font-semibold text-gray-800 mb-4">
+                  Company data
+                </h2>
+
+                <div className="border-t pt-5 flex flex-col md:flex-row justify-between gap-6">
+
+                  {/* LEFT */}
+                  <div className="space-y-4 text-gray-700">
+
+                    <div className="flex items-center gap-3">
+                      <Building2 className="w-5 h-5 text-blue-500" />
+                      <span>{store.company.legalName}</span>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <MapPin className="w-5 h-5 text-blue-500" />
+                      <span>{store.company.address}</span>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <Mail className="w-5 h-5 text-blue-500" />
+                      <span>{store.company.email}</span>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <Phone className="w-5 h-5 text-blue-500" />
+                      <span>{store.company.phone}</span>
+                    </div>
+
+                  </div>
+
+                  {/* RIGHT (MAP) */}
+                  {store.company.mapEmbedUrl && (
+                    <div className="w-full md:w-[380px] h-[200px] rounded-xl overflow-hidden">
+                      <iframe
+                        src={store.company.mapEmbedUrl}
+                        width="100%"
+                        height="100%"
+                        loading="lazy"
+                        className="border-0"
+                      />
+                    </div>
+                  )}
+
+                </div>
+              </div>
+            )}
 
         </div>
       </div>
