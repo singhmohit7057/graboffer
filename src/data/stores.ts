@@ -114,7 +114,7 @@ export const stores: Store[] = [
   {
     id: 11,
     name: 'Dreamhost',
-    description: '',
+    description: 'Choice of Cloud Providers (DigitalOcean, Vultr, Linode, AWS, GCE) with 1-Click Scaling. AI-Powered Troubleshooting (AI Copilot) with 1-Click Automated Resolutions. Autoscaling for Thousands of Concurrent Users (Cloudways Autonomous).',
     slug: 'dreamhost',
     logo: '/logo/dreamhost.png',
     color: '#FF9900',
