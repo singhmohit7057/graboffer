@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 const slides = [
   {
     id: 1,
-    image: '/images/hero-flipkart.jpg',
+    image: '/herosection/hero-flipkart.jpg',
     title: 'Up To 80% OFF',
     subtitle: 'On Fashion, Electronics & More',
     cta: 'SHOP NOW',
@@ -12,7 +12,7 @@ const slides = [
   },
   {
     id: 2,
-    image: '/images/hero-uber.jpg',
+    image: '/herosection/hero-uber.jpg',
     title: 'Flat 50% OFF',
     subtitle: 'On Your First 3 Rides',
     cta: 'GRAB NOW',
@@ -20,7 +20,7 @@ const slides = [
   },
   {
     id: 3,
-    image: '/images/hero-booking.jpg',
+    image: '/herosection/hero-booking.jpg',
     title: 'Up To 60% OFF',
     subtitle: 'Extra 10% OFF On Your Bookings',
     cta: 'GRAB NOW',

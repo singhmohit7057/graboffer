@@ -36,6 +36,9 @@ import StorePage from './pages/store/StorePage';
 import CategoryIndexPage from './pages/category/CategoryIndexPage';
 import CategoryPage from './pages/category/CategoryPage';
 
+import Login from './pages/auth/Login';
+import Signup from './pages/auth/Signup';
+
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -79,6 +82,9 @@ function App() {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-conditions" element={<TermsConditions />} />
             <Route path="/cookies-policy" element={<CookiesPolicy />} />
+
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
 
             <Route path="/unsubscribe" element={<Unsubscribe />} />
 

@@ -198,10 +198,13 @@ export default function Header() {
             </button>
 
             {/* Login Button */}
-            <button className="hidden sm:flex items-center gap-2 px-4 py-2.5 bg-[#0064c9] text-white rounded-full hover:bg-[#0052a3] transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
+            <Link
+              to="/login"
+              className="hidden sm:flex items-center gap-2 px-4 py-2.5 bg-[#0064c9] text-white rounded-full hover:bg-[#0052a3] transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+            >
               <User className="w-4 h-4" />
               <span className="text-sm font-semibold">Log In / Sign Up</span>
-            </button>
+            </Link>
 
             {/* Mobile Menu Button (Burger Icon) */}
             <button
